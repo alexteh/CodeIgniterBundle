@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#----------------------------------------------------#
+#    PHP Code Sniffer starter                        #
+#    http://pear.php.net/PHP_CodeSniffer             #
+#----------------------------------------------------#
+
+/usr/bin/env phpcs --encoding=utf-8 \
+--ignore=*/tests/*,*/views/*,*/errors/*,*/config/*,*/language/*,*/core/* \
+--standard=PEAR --extensions=php $1
