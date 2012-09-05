@@ -1,4 +1,8 @@
 codeigniter-userlibs
 ====================
 
-Set of Codeigniter libraries
+Codeigniter libraries & extensions
+
+1. User Libraries
+2. Russian translaions
+3. Phpcs script

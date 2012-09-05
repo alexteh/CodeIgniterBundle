@@ -6,5 +6,5 @@
 #----------------------------------------------------#
 
 /usr/bin/env phpcs --encoding=utf-8 \
---ignore=*/tests/*,*/views/*,*/errors/*,*/config/*,*/language/*,*/core/* \
+--ignore=*/tests/*,*/views/*,*/errors/*,*/config/*,*/language/*,*/system/* \
 --standard=PEAR --extensions=php $1

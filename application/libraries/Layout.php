@@ -13,7 +13,9 @@
  *
  */
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if ( ! defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
  * CodeIgniter Layout Class
