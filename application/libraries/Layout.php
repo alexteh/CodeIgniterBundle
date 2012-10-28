@@ -13,7 +13,7 @@
  *
  */
 
-if ( ! defined('BASEPATH')) {
+if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
@@ -52,7 +52,7 @@ class Layout
      *
      * @return void
      */
-    private function _setLayout($layout)
+    private function setLayout($layout)
     {
         $this->layout = $layout;
     }
@@ -67,21 +67,19 @@ class Layout
      *
      * @return void
      */
-    public function view($layout, $view, $data=null, $return=false)
+    public function view($layout, $view, $data = null, $return = false)
     {
         $loadedData['yeld'] = $this->ci->load->view($view, $data, true);
 
         if ($return) {
-            $this->_setLayout($layout);
+            $this->setLayout($layout);
             $output = $this->ci->load->view($this->layout, $loadedData, true);
 
             return $output;
         } else {
-            $this->_setLayout($layout);
+            $this->setLayout($layout);
             $this->ci->load->view($this->layout, $loadedData, false);
         }
     }
 }
 
-/* End of file Layout.php */
-/* Location: ./app/libraries/Layout.php */

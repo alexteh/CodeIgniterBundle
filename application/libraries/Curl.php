@@ -32,7 +32,7 @@ if ( ! defined('BASEPATH')) {
 
 class Curl
 {
-    protected $ci_;
+    protected $cii;
     protected $handler;
 
     /**
@@ -42,23 +42,24 @@ class Curl
      */
     public function __construct()
     {
-        $this->ci_ =& get_instance();
+        $this->cii =& get_instance();
     }
 
     /**
-     * Request prepare
-     * 
-     * @param string $url     request url 
+     * Request execute
+     *
+     * @param string $url     request url
      * @param array  $options curl parameters
      *
-     * @return void
+     * @return mixed
      */
-    private function _prepareRequest($url, $options = null)
+    public function request($url, $options = null)
     {
         $this->handler = curl_init($url);
+        $this->opts = $options;
 
-        if (empty($options)) {
-            $options = array(
+        if (empty($this->opts)) {
+            $this->opts = array(
                 CURLOPT_BUFFERSIZE     => 10,
                 CURLOPT_CONNECTTIMEOUT => 30,
                 CURLOPT_SSL_VERIFYHOST => false,
@@ -66,25 +67,13 @@ class Curl
             );
         };
 
-        curl_setopt_array($this->handler, $options);
-    }
-
-    /**
-     * Request execute
-     *
-     * @param string $url     request url 
-     * @param array  $options curl parameters
-     *
-     * @return void
-     */
-    public function request($url, $options = null)
-    {
-
-        $this->_prepareRequest($url, $options);
+        curl_setopt_array($this->handler, $this->opts);
 
         $response = curl_exec($this->handler);
+
         curl_close($this->handler);
 
         return $response;
     }
 }
+
