@@ -22,6 +22,8 @@ if (! function_exists('mainMenu')) {
     /**
      * Draw main menu
      *
+     * need a loaded html helper
+     *
      * @return void
      *
      */
@@ -29,7 +31,6 @@ if (! function_exists('mainMenu')) {
     {
         $ci =& get_instance();
         $controllers = array();
-        $_nav = '<ul class="nav">';
 
         $handle = opendir(APPPATH . 'controllers');
         if ($handle) {
@@ -56,43 +57,10 @@ if (! function_exists('mainMenu')) {
             closedir($handle);
         }
 
-        sort($controllers);
-
-        foreach ($controllers as $controller) {
-            $_nav .= '<li><a href="/'.$controller.'">'.dict($controller).'</a></li>';
+        foreach ($controllers as $key => $value) {
+            $controllers[$key] = anchor('/' . $value, ucfirst($value));
         }
 
-        $_nav .= '</ul>';
-
-        echo $_nav;
+        echo ul($controllers, array('class' => 'nav'));
     }
 }
-
-if (! function_exists('dict')) {
-
-    /**
-     * Dict for main menu
-     *
-     * @param string $str original string for translation
-     *
-     * @return void
-     *
-     */
-    function dict($str)
-    {
-        $dict = array(
-            'dashboard' => 'Панель управления',
-            'ticket'    => 'Сообщения',
-            'journal'   => 'Логи',
-        );
-
-        $ret = $str;
-
-        if (isset($dict[$str])) {
-            return $dict[$str];
-        } else {
-            return $ret;
-        }
-    }
-}
-

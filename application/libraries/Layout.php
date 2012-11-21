@@ -32,7 +32,7 @@ if (! defined('BASEPATH')) {
 class Layout
 {
 
-    public $ci;
+    public $obj;
     public $layout;
 
     /**
@@ -42,7 +42,7 @@ class Layout
      */
     public function __construct()
     {
-        $this->ci =& get_instance();
+        $this->obj =& get_instance();
     }
 
     /**
@@ -69,17 +69,16 @@ class Layout
      */
     public function view($layout, $view, $data = null, $return = false)
     {
-        $loadedData['yeld'] = $this->ci->load->view($view, $data, true);
+        $loadedData['yeld'] = $this->obj->load->view($view, $data, true);
 
         if ($return) {
             $this->setLayout($layout);
-            $output = $this->ci->load->view($this->layout, $loadedData, true);
+            $output = $this->obj->load->view($this->layout, $loadedData, true);
 
             return $output;
         } else {
             $this->setLayout($layout);
-            $this->ci->load->view($this->layout, $loadedData, false);
+            $this->obj->load->view($this->layout, $loadedData, false);
         }
     }
 }
-
