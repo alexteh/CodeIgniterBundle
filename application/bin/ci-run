@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z $@ ]; then
+    echo "Parameter needed"
+    exit
+fi
+
+for var in "$@"
+do
+    PHPARG=$PHPARG:$var 
+done
+
+/usr/bin/env php index.php cli index $PHPARG
