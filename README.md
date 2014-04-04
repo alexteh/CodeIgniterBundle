@@ -1,5 +1,5 @@
-codeigniter-userlibs
-====================
+CodeIgniter tools bundled via composer
+======================================
 
 Codeigniter libraries & extensions
 
